@@ -2,7 +2,7 @@
 
 Interactive, dependency-free English teaching demo. [Open demo](https://teyuan-lab.github.io/spherical-aberration-demo/).
 
-Adjust lens shape factor, refractive index, paraxial back focal length (80–200 mm), and collimated-beam radius; compare symmetric, plano-convex, and meniscus forms. Exact ray paths, a magnified focus view, and a shape sweep update together. The minimum button finds the least absolute marginal longitudinal spherical aberration over q = -2 to +2 in steps of 0.005.
+Adjust lens shape factor, refractive index, paraxial back focal length (25–200 mm), and collimated-beam radius; compare symmetric, plano-convex, and meniscus forms. Exact ray paths, a magnified focus view, and a shape sweep update together. The minimum button finds the least absolute marginal longitudinal spherical aberration over q = -3 to +3 in steps of 0.005.
 
 ## Model
 
@@ -20,3 +20,5 @@ Open index.html directly, or use `node serve.cjs` for http://127.0.0.1:8790. Run
 - [Edmund Optics: Optics Application Examples](https://www.edmundoptics.eu/knowledge-center/application-notes/optics/optics-application-examples/).
 
 
+
+At short BFL or extreme bending, some beam radii exceed the physical spherical lens or undergo total internal reflection. The demo marks an unavailable marginal focus, omits those curve segments, and excludes them from the optimum search. Reduce beam radius to recover a transmitted marginal ray.
