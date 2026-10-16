@@ -16,6 +16,7 @@ Open index.html directly, or use `node serve.cjs` for http://127.0.0.1:8790. Run
 
 ## References
 
-- [J. B. Tuttle, University of Denver: Topics in Ray Optics](https://mysite.du.edu/~etuttle/optics/geop.htm).
+- [University of Denver: Topics in Ray Optics](https://mysite.du.edu/~etuttle/optics/geop.htm).
 - [Edmund Optics: Optics Application Examples](https://www.edmundoptics.eu/knowledge-center/application-notes/optics/optics-application-examples/).
+
 
