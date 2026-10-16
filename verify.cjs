@@ -19,3 +19,12 @@ assert.equal(O.safeTrace(O.lens(-3,1.5,25),10),null);assert.ok(O.safeTrace(O.len
 console.log(`${expanded} expanded-range cases checked; ${unavailable} unavailable marginal rays correctly flagged`);
 
 assert.equal(O.optimum(1.45,12,25).q,null,'no optimum when the entire sweep is unavailable');
+
+const screenLens=O.lens(0,1.5,100);
+const focused=O.screenSpot(screenLens,10,100),before=O.screenSpot(screenLens,10,90),after=O.screenSpot(screenLens,10,110);
+assert.equal(focused.points.length,4096);assert.equal(focused.fraction,1);assert.ok(focused.rmsRadius<before.rmsRadius&&focused.rmsRadius<after.rmsRadius,'blur grows away from focus');
+const tiny=O.screenSpot(screenLens,.1,100);assert.ok(tiny.rmsRadius<1e-6,'paraxial point focus');
+const defocus=O.screenSpot(screenLens,.1,110);assert.ok(Math.abs(defocus.rmsRadius-.1/screenLens.f*10/Math.sqrt(2))<1e-6,'paraxial defocus scaling');
+const partial=O.screenSpot(O.lens(-3,1.5,25),12,25);assert.ok(partial.fraction>0&&partial.fraction<1);assert.ok(partial.points.every(p=>p.every(Number.isFinite)));
+const h=10*Math.sqrt(.5/4096),first=O.trace(screenLens,h);assert.ok(Math.abs(focused.points[0][0]-(first.p2[1]+(screenLens.fp-first.p2[0])*first.d2[1]/first.d2[0]))<1e-12);
+console.log('Screen intercept, point-focus, defocus scaling, and partial-pupil checks passed');

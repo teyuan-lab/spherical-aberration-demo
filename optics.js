@@ -22,5 +22,12 @@ function trace(l,h){
 function safeTrace(l,h){try{return trace(l,h);}catch{return null;}}
 function lsa(l,a){const r=safeTrace(l,a);return r?l.fp-r.focus:NaN;}
 function optimum(n,a,bfl=100){let best={q:null,value:Infinity};for(let i=0;i<=1200;i++){const q=-3+i/200,v=Math.abs(lsa(lens(q,n,bfl),a));if(v<best.value)best={q,value:v};}return best;}
-const api={lens,sag,trace,safeTrace,lsa,optimum};if(typeof module!=='undefined')module.exports=api;else root.Optics=api;
+function screenSpot(l,a,distance,count=4096){
+ const points=[],xScreen=l.t+distance;let sum=0,maxRadius=0;
+ for(let i=0;i<count;i++){const h=a*Math.sqrt((i+.5)/count),r=safeTrace(l,h);if(!r||r.d2[0]<=0||xScreen<r.p2[0])continue;
+ const height=r.p2[1]+(xScreen-r.p2[0])*r.d2[1]/r.d2[0],theta=i*Math.PI*(3-Math.sqrt(5));
+ points.push([height*Math.cos(theta),height*Math.sin(theta)]);sum+=height*height;maxRadius=Math.max(maxRadius,Math.abs(height));}
+ return {points,rmsRadius:points.length?Math.sqrt(sum/points.length):NaN,maxRadius,fraction:points.length/count};
+}
+const api={lens,sag,trace,safeTrace,lsa,optimum,screenSpot};if(typeof module!=='undefined')module.exports=api;else root.Optics=api;
 })(typeof window!=='undefined'?window:globalThis);

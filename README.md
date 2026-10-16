@@ -22,3 +22,7 @@ Open index.html directly, or use `node serve.cjs` for http://127.0.0.1:8790. Run
 
 
 At short BFL or extreme bending, some beam radii exceed the physical spherical lens or undergo total internal reflection. The demo marks an unavailable marginal focus, omits those curve segments, and excludes them from the optimum search. Reduce beam radius to recover a transmitted marginal ray.
+
+## Movable screen
+
+The screen slider sets its distance 10–250 mm from the rear vertex. A green plane in the ray diagram and an image of the on-axis point source update together. The paraxial-focus button places the screen at the selected BFL. The image samples 4,096 equal-area entrance-pupil rays over a uniformly illuminated circular beam, rotates meridional ray intercepts around the axis, and bins them into screen pixels. Invalid rays and rays whose exit point lies beyond the screen are excluded. The field-width selector fixes the physical image scale; changing screen position does not auto-rescale the image. The readout reports geometric RMS radius over all rays reaching the screen, sampled ray fraction, and any light outside the displayed field. Brightness uses a logarithmic scale with automatic exposure; no diffraction, sensor response, Fresnel losses, or absolute photometry is modeled.
